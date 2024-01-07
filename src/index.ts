@@ -1,18 +1,43 @@
+import inquirer from "inquirer";
+
 function main() {
-  let num1 = 10;
-  let num2 = 20;
-  let operation = "x";
-  if (operation == "+") {
-    sum(num1, num2);
-  } else if (operation == "-") {
-    subtract(num1, num2);
-  } else if (operation == "*") {
-    multiply(num1, num2);
-  } else if (operation == "/") {
-    divide(num1, num2);
-  } else {
-    console.log("Invalid operator!!\nSelect a valid operator from +, -, *, /");
-  }
+  inquirer
+    .prompt([
+      {
+        type: "number",
+        name: "num 1",
+        message: "Enter the first number: ",
+      },
+      {
+        type: "number",
+        name: "num 2",
+        message: "Enter second number: ",
+      },
+      {
+        type: "list",
+        name: "operation",
+        choices: ["+", "-", "*", "/"],
+        message: "Select the operation",
+      },
+    ])
+    .then((answers) => {
+      let num1 = answers["num 1"] as number;
+      let num2 = answers["num 2"] as number;
+      // console.log(answers);
+      if (answers.operation == "+") {
+        sum(num1, num2);
+      } else if (answers.operation == "-") {
+        subtract(num1, num2);
+      } else if (answers.operation == "*") {
+        multiply(num1, num2);
+      } else if (answers.operation == "/") {
+        divide(num1, num2);
+      } else {
+        console.log(
+          "Invalid operator!!\nSelect a valid operator from +, -, *, /"
+        );
+      }
+    });
 }
 
 function sum(num1: number, num2: number) {

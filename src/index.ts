@@ -23,7 +23,6 @@ function main() {
     .then((answers) => {
       let num1 = answers["num 1"] as number;
       let num2 = answers["num 2"] as number;
-      // console.log(answers);
       if (answers.operation == "+") {
         sum(num1, num2);
       } else if (answers.operation == "-") {

@@ -1,4 +1,11 @@
+#! /usr/bin/env node
+
 import inquirer from "inquirer";
+import chalk from "chalk";
+
+console.log(
+  chalk.blueBright.bold("******Welcome To Infinity Calculator******")
+);
 
 function main() {
   inquirer
@@ -6,18 +13,18 @@ function main() {
       {
         type: "number",
         name: "num 1",
-        message: "Enter the first number: ",
+        message: chalk.greenBright("Enter the first number: "),
       },
       {
         type: "number",
         name: "num 2",
-        message: "Enter second number: ",
+        message: chalk.greenBright("Enter second number: "),
       },
       {
         type: "list",
         name: "operation",
         choices: ["+", "-", "*", "/"],
-        message: "Select the operation",
+        message: chalk.cyan("Select the operation"),
       },
     ])
     .then((answers) => {
@@ -33,7 +40,9 @@ function main() {
         divide(num1, num2);
       } else {
         console.log(
-          "Invalid operator!!\nSelect a valid operator from +, -, *, /"
+          chalk.redBright(
+            "Invalid operator!!\nSelect a valid operator from +, -, *, /"
+          )
         );
       }
     });
